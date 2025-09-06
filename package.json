@@ -1,0 +1,22 @@
+{
+  "name": "first-tests-playwrigth",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EdChekanov/first-tests-playwrigth.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EdChekanov/first-tests-playwrigth/issues"
+  },
+  "homepage": "https://github.com/EdChekanov/first-tests-playwrigth#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.55.0",
+    "@types/node": "^24.3.1"
+  }
+}
