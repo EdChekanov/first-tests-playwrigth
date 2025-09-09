@@ -4,7 +4,7 @@ test.describe('authorization on the Sauce Demo', () => {
   test('User must successfully log in to the system', async ({ page }) => {
     // Login
     await page.goto('https://www.saucedemo.com/');
-    await page.locator('[data-test="username"]').click();
+    await page.locator('[data-test="username"]').click(); // можно убрать здесь и далее сlick() перед заполнением инпута и просто использовать fill()
     await page.locator('[data-test="username"]').fill('standard_user');
     await page.locator('[data-test="password"]').click();
     await page.locator('[data-test="password"]').fill('secret_sauce');
