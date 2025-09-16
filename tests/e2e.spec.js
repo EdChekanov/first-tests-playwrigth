@@ -22,21 +22,13 @@ test('Успешный логин и проверка страницы това�
   const pageTitle = await productsPage.getPageTitle();
   expect(pageTitle).toBe('Products');
   //Добавить в корзину самый дорогой товар на странице
-  productsPage.products.sort((a, b) => +b.price - +a.price);
-  const highPriceProduct = productsPage.products[0];
-  await page
-    .locator(
-      `[data-test="add-to-cart-${highPriceProduct.prefix}${highPriceProduct.name}"]`
-    )
-    .click();
+  await productsPage.sortProduct('hilo');
+  const highPriceProduct = await productsPage.getFirstProductTitle();
+  await productsPage.addItemToCart(highPriceProduct);
   //Перейти в корзину.
   productsPage.openCart();
   //Проверить, что в корзине находится именно тот товар, который вы добавили
-  await expect(
-    page.locator(
-      "//div[@class='cart_list']/div[@class='cart_item'][1]/div[@class='cart_item_label']/a/div[@class='inventory_item_name']"
-    )
-  ).toContainText(highPriceProduct.title);
+  expect(await cartPage.getFirstProductTitle()).toBe(highPriceProduct);
   //Начать оформление заказа (нажать "Checkout")
   await cartPage.goToCheckout();
   //Заполнить информацию о пользователе

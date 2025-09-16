@@ -14,14 +14,14 @@ export class ProductsPage extends BasePage {
     this.addToCartLocators = {};
     this.products.forEach((item) => {
       this.addToCartLocators[item.name] = {
-        locator: `[data-test="add-to-cart-${item.prefix}${item.name}]`,
+        locator: `[data-test="add-to-cart-${item.prefix}${item.name}"]`,
       };
     });
 
     this.removeFromCartLocators = {};
     this.products.forEach((item) => {
       this.removeFromCartLocators[item.name] = {
-        locator: `[data-test="remove-cart-${item.prefix}${item.name}]`,
+        locator: `[data-test="remove-cart-${item.prefix}${item.name}"]`,
       };
     });
 
@@ -65,7 +65,10 @@ export class ProductsPage extends BasePage {
   }
 
   async addItemToCart(itemName) {
-    await this.page.locator(`[data-test="add-to-cart-${itemName}]`).click();
+    const product = this.products.find(product => product.title == itemName);
+    await this.page
+      .locator(this.addToCartLocators[product.name].locator)
+      .click();
   }
   async removeItemFromCart(itemName) {
     await this.page.locator(`[data-test="remove-cart-${itemName}]`).click();
@@ -75,5 +78,14 @@ export class ProductsPage extends BasePage {
   }
   async getPageTitle() {
     return await this.title.innerText();
+  }
+  async sortProduct(method) {
+    await this.filter.waitFor({ state: 'visible' });
+    await this.filter.selectOption(method);
+  }
+  async getFirstProductTitle() {
+    return this.page.locator(
+      "//div[@class='inventory_list']/div[@class='inventory_item'][1]//div[@class='inventory_item_label']/a/div[@class='inventory_item_name ']"
+    ).innerText();
   }
 }
