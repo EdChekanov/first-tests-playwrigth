@@ -23,7 +23,7 @@ const updatedBooking = {
 let bookingId;
 let token;
 
-test.describe('API-тесты для Restful-booker', () => {
+test.describe('API-тесты для Restful-booker @api', () => {
   const baseURL = 'https://restful-booker.herokuapp.com';
 
   test('Создание бронирования (Create - POST)', async ({ request }) => {
