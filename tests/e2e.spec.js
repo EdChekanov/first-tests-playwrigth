@@ -6,7 +6,7 @@ import { CheckoutInfoPage } from '../pages/checkout.info.page';
 import { CheckoutOverviewPage } from '../pages/checkout.overview.page';
 import { CheckoutCompletePage } from '../pages/checkout.complete.page';
 
-test('Успешный логин и проверка страницы товаров', async ({ page }) => {
+test('Успешный логин и проверка страницы товаров @ui', async ({ page }) => {
   const loginPage = new LoginPage(page);
   const productsPage = new ProductsPage(page);
   const cartPage = new CartPage(page);
